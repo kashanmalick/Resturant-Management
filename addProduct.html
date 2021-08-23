@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
+    <link rel="stylesheet" href="admin.css">
+    <link rel="icon" href="./Images/logo.png">
+    <title>Panda G-Products</title>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-database.js"></script>
+
+    <script>
+    var firebaseConfig = {
+        apiKey: "AIzaSyCM_81s1JqtEGDOA5fEnk_DclOcpLQKo_4",
+        authDomain: "resturantmangement.firebaseapp.com",
+        projectId: "resturantmangement",
+        storageBucket: "resturantmangement.appspot.com",
+        messagingSenderId: "602057186446",
+        appId: "1:602057186446:web:ec3c86dd93b12b90b97ddf",
+        measurementId: "G-HH2FZREXS7"
+    };
+    firebase.initializeApp(firebaseConfig);
+    </script>
+</head>
+<body>
+     <!-- NavBar -->
+     <nav class="navbar navbar-expand-lg navbar-light bg-light" id="top">
+        <div class="container-fluid">
+          <img src="/Images/logo.png" alt="Comapy Logo" width="80px" style="border-radius: 100%;">
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="./admin.html">Home</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#rest">Resturants</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">Add Resturants</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#contact">Contact Us</a>
+              </li>
+
+              <li class="nav-item">
+                <a class="nav-link" href="#about">About Us</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="./checkout.html">Order</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#about" id="name" style="color: green;font-weight: bold;"> </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#" id="name" style="color: red;font-weight: bold;" onclick="signOut()">Sign out </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+
+      <!-- Slider -->
+      <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
+        <div class="carousel-indicators">
+          <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+          <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
+          <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
+        </div>
+        <div class="carousel-inner">
+          <div class="carousel-item active">
+            <img src="/Images/slider2.jpg" class="d-block w-100" alt="Slider Images">
+          </div>
+          <div class="carousel-item">
+            <img src="/Images/slider1.jpg" class="d-block w-100" alt="Slider Images">
+          </div>
+          <div class="carousel-item">
+            <img src="/Images/slider3.jpg" class="d-block w-100" alt="Slider Images">
+          </div>
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Next</span>
+        </button>
+      </div>
+      <!-- Resturants -->
+      <h1 style="text-align: center;margin-top: 10px;" id="rest">Add item</h1>
+      <div class="insPro">
+        <span>Select Category</span>
+        <select  id="catg">
+          <option value="Desi Food">Desi Food</option>
+          <option value="Chinese">Chinese</option>
+          <option value="bbq">BBQ</option>
+          <option value="fastFood" >Fast Food</option>
+          <option value="Dessert" >Dessert</option>
+        </select><br><br>
+        <span>Select Delivery Option</span>
+        <select  id="delivery">
+          <option value="Home Delivery">Home Delivery</option>
+          <option value="Take Away">Take Away</option>
+        </select><br>
+        <input type="text" placeholder="Enter Product Name" id="pName"><br>
+        <input type="text" placeholder="Enter Product Description" id="pDes"><br>
+        <input type="text" placeholder="Enter Product Price" id="pRate"><br>
+        <span>Please Choice Product Image</span><br><input type="file" name="imgPath" id="imgP"><br>
+        <button class="sBtn" onclick="sendItem()">Submit</button>
+        <p id="link"></p>
+    </div>
+      <!-- Top to Bottom -->
+      <div class="toTop">
+        <a href="#top">
+            <img src="./Images/backTotop.png" alt="" width="15%">
+        </a>
+    </div>
+      <!-- Footer -->
+      <footer class="foot">
+        <ul class="f-ul">
+            <li><a href="#">Fast Food</a></li>
+            <li><a href="#">BBQ</a></li>
+            <li><a href="#">Desi Food</a></li>
+            <li><a href="#">Chines</a></li>
+        </ul>
+        <ul class="f-ul">
+            <li><a href="#">Multiple Resturant</a></li>
+            <li><a href="#">Dine In</a></li>
+            <li><a href="#">Delivery</a></li>
+            <li><a href="#">Take Away</a></li>
+        </ul>
+        <ul class="f-ul">
+            <li><a href="#">Spice</a></li>
+            <li><a href="#">Deserts</a></li>
+            <li><a href="#">Sweet & Sour</a></li>
+            <li><a href="#">Sweet & Sour</a></li>
+        </ul>
+        <div class="foot-img" style="text-align: center; background-color: white;">
+            <a href="#"><img src="./Images/facebook.png" alt="facebook Logo" width="2%"></a>
+            <a href="#"><img src="./Images/instagram.png" alt="facebook Logo" width="2%"></a>
+        </div>
+    </footer>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj" crossorigin="anonymous"></script>
+    <script src="app.js"></script>
+</body>
+</html>

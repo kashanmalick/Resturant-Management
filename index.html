@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SIGN UP</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" href="./Images/logo.png">
+
+<script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-database.js"></script>
+
+<script>
+  var firebaseConfig = {
+    apiKey: "AIzaSyCM_81s1JqtEGDOA5fEnk_DclOcpLQKo_4",
+    authDomain: "resturantmangement.firebaseapp.com",
+    projectId: "resturantmangement",
+    storageBucket: "resturantmangement.appspot.com",
+    messagingSenderId: "602057186446",
+    appId: "1:602057186446:web:ec3c86dd93b12b90b97ddf",
+    measurementId: "G-HH2FZREXS7"
+  };
+  firebase.initializeApp(firebaseConfig);
+</script>
+</head>
+
+<body>
+    <div class="wrapper fadeInDown">
+        <div id="formContent">
+            <!-- Tabs Titles -->
+            <h2 onclick="signInpage()" class="inactive underlineHover"> Sign In </h2>
+            <h2 class="active">Sign Up </h2>
+
+            <!-- Login Form -->
+                <input type="text" id="rest" class="fadeIn second" name="login" placeholder="Enter Your Name / Resturant" required>
+                <input type="email" id="email" class="fadeIn second" name="login" placeholder="Enter Your Email" required>
+                <input type="password" id="password" class="fadeIn second" name="login" placeholder="Create Password" required>
+                <input type="text" id="country" class="fadeIn second" name="login" placeholder="Country Name" required>
+                <input type="text" id="city" class="fadeIn second" name="login" placeholder="City" required>
+                <br><br>
+                <input type="submit" class="fadeIn fourth" value="Submit" onclick="signUp()">
+
+        </div>
+    </div>
+    <script src="login.js"></script>
+</body>
+
+</html>
